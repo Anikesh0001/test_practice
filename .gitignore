@@ -1,0 +1,27 @@
+# OS
+.DS_Store
+
+# Env
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+app.db
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# Builds
+frontend/dist/
+backend/.mypy_cache/
+backend/.pytest_cache/
+
+# Logs
+*.log
