@@ -181,7 +181,7 @@ const Test = () => {
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <h2 className="text-xl font-semibold">Ready to begin?</h2>
           <p className="mt-2 text-sm text-slate-500">
-            Select your duration, shuffle questions, and start the test.
+            Select your duration and start the test. Questions follow the PDF order.
           </p>
           <div className="mt-5">
             <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
@@ -213,7 +213,7 @@ const Test = () => {
           <h3 className="text-lg font-semibold">Test Summary</h3>
           <div className="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
             <p>Total questions: {questions.length}</p>
-            <p>Shuffle: enabled</p>
+            <p>Order: same as PDF</p>
             <p>Auto-submit: on timer end</p>
           </div>
         </div>

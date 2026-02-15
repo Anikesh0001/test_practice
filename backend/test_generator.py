@@ -1,4 +1,3 @@
-import random
 from datetime import datetime
 from typing import List
 from sqlalchemy.orm import Session
@@ -10,10 +9,7 @@ def create_test_session(db: Session, questions: List[Question]) -> TestSession:
     db.add(session)
     db.flush()
 
-    shuffled = questions[:]
-    random.shuffle(shuffled)
-
-    for idx, question in enumerate(shuffled):
+    for idx, question in enumerate(questions):
         link = TestQuestion(test_id=session.id, question_id=question.id, order_index=idx)
         db.add(link)
 

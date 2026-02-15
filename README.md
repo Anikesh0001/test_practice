@@ -6,7 +6,7 @@ A full-stack web application that converts PDF assessment sets into timed online
 
 - Drag & drop PDF upload with automatic question extraction
 - Timed test environment with fullscreen mode
-- Question shuffle, bookmarks, and unanswered review
+- PDF order questions, bookmarks, and unanswered review
 - Auto-submit on timer expiry
 - Gemini-powered evaluation and explanations
 - Results dashboard with analytics chart
@@ -92,11 +92,22 @@ The backend uses two prompts:
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-## Screenshots (placeholders)
+## Screenshots
 
-- Upload page screenshot
-- Test environment screenshot
-- Results dashboard screenshot
-- Explanation modal screenshot
+### Upload Page
+![Upload Page](screenshot/1.png)
 
-Replace these placeholders with real images once available.
+### Test Configuration
+![Test Configuration](screenshot/2.png)
+
+### Test Environment
+![Test Environment](screenshot/3.png)
+
+### Results Dashboard
+![Results Dashboard](screenshot/4.png)
+
+### Explanation Modal
+![Explanation Modal](screenshot/5.png)
+
+### Review Page
+![Review Page](screenshot/6.png)
