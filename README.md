@@ -68,29 +68,7 @@ npm run dev
 4. Submit or auto-submit on timer end.
 5. View results, explanations, and analytics.
 
-## Gemini Prompting
 
-The backend uses two prompts:
-
-- **Answer Evaluation Prompt**: Returns JSON with correct option, correctness, and short explanation.
-- **Explanation Prompt**: Explains the correct answer in simple terms (max 4 lines).
-
-## Deployment (Free Tier)
-
-### Frontend (Vercel)
-
-1. Set the Vercel project root to `frontend`.
-2. Add environment variable `VITE_API_BASE_URL` pointing to your backend URL.
-3. Deploy.
-
-### Backend (Render / Railway)
-
-1. Set the service root to `backend`.
-2. Add environment variable `GEMINI_API_KEY`.
-3. Use the start command:
-```
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
 
 ## Screenshots
 
