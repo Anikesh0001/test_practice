@@ -184,15 +184,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
 
-## 📚 Additional Documentation
 
-- **[QUICKSTART.md](QUICKSTART.md)** - Get started in 5 minutes
-- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - Complete API reference
-- **[IMPLEMENTATION_GUIDE.md](IMPLEMENTATION_GUIDE.md)** - Architecture & technical details
-- **[FEATURE_COMPARISON.md](FEATURE_COMPARISON.md)** - PDF vs Company mode comparison
-- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - What was built
-
----
 
 ## 🎯 Key Features
 
