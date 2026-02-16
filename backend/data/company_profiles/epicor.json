@@ -1,0 +1,64 @@
+{
+  "company_name": "epicor",
+  "difficulty_level": "Hard",
+  "question_distribution": {
+    "aptitude": 15,
+    "core_cs": 15,
+    "dsa": 10,
+    "coding": 10
+  },
+  "dsa_topics": [
+    "Arrays",
+    "Strings",
+    "Dynamic Programming",
+    "Trees",
+    "Graphs"
+  ],
+  "aptitude_ratio": 0.3,
+  "coding_style": "Problem-solving focused",
+  "hiring_focus": [
+    "Problem Solving",
+    "Data Structures & Algorithms",
+    "Coding Proficiency",
+    "Analytical Thinking"
+  ],
+  "test_duration_minutes": 90,
+  "total_questions": 50,
+  "research_summary": "I cannot provide the detailed information you've requested about Epicor's campus recruitment and online assessment patterns. The search results provided contain only general hiring process information—such as application procedures, interview preparation tips, and timeline estimates—but do not include any specifics about technical assessments, question distributions, difficulty levels, or data structures and algorithms topics.\n\nTo obtain this information, I recommend:\n\n- **Contacting Epicor dire",
+  "sections": {
+    "aptitude": {
+      "count": 15,
+      "types": [
+        "Logical Reasoning",
+        "Quantitative Aptitude",
+        "Verbal Ability"
+      ]
+    },
+    "core_cs": {
+      "count": 15,
+      "topics": [
+        "Operating Systems",
+        "DBMS",
+        "Networks",
+        "OOP"
+      ]
+    },
+    "dsa": {
+      "count": 10,
+      "topics": [
+        "Arrays",
+        "Strings",
+        "Dynamic Programming",
+        "Trees",
+        "Graphs"
+      ]
+    },
+    "coding": {
+      "count": 10,
+      "difficulty": "Hard",
+      "style": "Problem-solving focused"
+    }
+  },
+  "cached_at": "2026-02-15T09:21:36.167181",
+  "cache_version": "1.0"
+}

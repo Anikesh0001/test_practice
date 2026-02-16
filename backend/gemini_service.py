@@ -8,8 +8,9 @@ import httpx
 load_dotenv()
 
 API_KEY = os.getenv("GEMINI_API_KEY")
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-1.5-flash-002")
-AI_PROVIDER = os.getenv("AI_PROVIDER", "gemini").lower()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+AI_PROVIDER = os.getenv("AI_PROVIDER", "groq").lower()  # Default to Groq for explanations
 PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
 PERPLEXITY_MODEL = os.getenv("PERPLEXITY_MODEL", "sonar-pro")
 
@@ -22,7 +23,7 @@ def _get_model():
 
 
 def _fallback_model():
-    for candidate in ["gemini-1.5-flash-002", "gemini-1.5-flash", "gemini-1.5-pro"]:
+    for candidate in ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]:
         try:
             return genai.GenerativeModel(candidate)
         except Exception:
@@ -64,19 +65,66 @@ def _perplexity_chat(prompt: str) -> str:
         return data["choices"][0]["message"]["content"]
 
 
-def evaluate_answer(question: str, options: Dict[str, str], user_answer: str) -> Dict:
-    if AI_PROVIDER == "perplexity" and not PERPLEXITY_API_KEY:
+def _groq_chat(prompt: str) -> str:
+    """Use Groq for fast, free explanations"""
+    if not GROQ_API_KEY:
+        raise RuntimeError("Groq API key not configured.")
+
+    headers = {"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"}
+    payload = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": [
+            {"role": "system", "content": "You are a concise exam explanation expert. Answer in 2-3 sentences."},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.3,
+        "max_tokens": 300,
+    }
+
+    with httpx.Client(timeout=30) as client:
+        response = client.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=payload)
+        response.raise_for_status()
+        data = response.json()
+        return data["choices"][0]["message"]["content"]
+
+
+def _groq_evaluate(question: str, options: Dict[str, str], user_answer: str) -> Dict:
+    """Evaluate using Groq - fast and free"""
+    prompt = (
+        "You are an exam evaluator. Given a question, options, and user answer, "
+        "return ONLY valid JSON in this exact format with no extra text:\n"
+        "{\"correct_answer\":\"A\",\"is_correct\":true,\"explanation\":\"brief explanation\"}\n\n"
+        f"Question: {question}\n"
+        f"Options: {options}\n"
+        f"User Answer: {user_answer}\n"
+        "Respond with only the JSON."
+    )
+    
+    raw = _groq_chat(prompt)
+    try:
+        data = _safe_json_loads(raw)
+        return data
+    except Exception as e:
+        print(f"Failed to parse Groq response: {e}. Raw: {raw}")
         return {
             "correct_answer": "A",
             "is_correct": user_answer == "A",
-            "explanation": "Perplexity API key not configured. Using placeholder evaluation.",
+            "explanation": "Evaluation unavailable"
         }
 
-    if AI_PROVIDER != "perplexity" and not API_KEY:
+
+def evaluate_answer(question: str, options: Dict[str, str], user_answer: str) -> Dict:
+    """Evaluate answer - uses original method for PDF (Gemini or fallback)"""
+    return _gemini_evaluate(question, options, user_answer)
+
+
+def _gemini_evaluate(question: str, options: Dict[str, str], user_answer: str) -> Dict:
+    """Original evaluation method for PDF mode - uses Gemini"""
+    if not API_KEY:
         return {
             "correct_answer": "A",
             "is_correct": user_answer == "A",
-            "explanation": "Gemini API key not configured. Using placeholder evaluation.",
+            "explanation": "API key not configured. Using placeholder evaluation.",
         }
 
     prompt = (
@@ -89,24 +137,28 @@ def evaluate_answer(question: str, options: Dict[str, str], user_answer: str) ->
         f"User Answer: {user_answer}\n"
     )
 
-    if AI_PROVIDER == "perplexity":
-        raw = _perplexity_chat(prompt)
-        data = _safe_json_loads(raw)
-    else:
+    try:
+        model = _get_model()
+        response = model.generate_content(
+            prompt,
+            generation_config={"temperature": 0.2, "response_mime_type": "application/json"},
+        )
+        data = _safe_json_loads(response.text)
+    except Exception:
         try:
-            model = _get_model()
-            response = model.generate_content(
-                prompt,
-                generation_config={"temperature": 0.2, "response_mime_type": "application/json"},
-            )
-            data = _safe_json_loads(response.text)
-        except Exception:
             model = _fallback_model()
             response = model.generate_content(
                 prompt,
                 generation_config={"temperature": 0.2, "response_mime_type": "application/json"},
             )
             data = _safe_json_loads(response.text)
+        except Exception as e:
+            print(f"Gemini evaluation failed: {e}. Using placeholder.")
+            return {
+                "correct_answer": "A",
+                "is_correct": user_answer == "A",
+                "explanation": "Evaluation unavailable"
+            }
 
     return {
         "correct_answer": str(data.get("correct_answer", "")).strip().upper(),
@@ -116,36 +168,21 @@ def evaluate_answer(question: str, options: Dict[str, str], user_answer: str) ->
 
 
 def explain_answer(question: str, options: Dict[str, str], correct_answer: str) -> str:
-    if AI_PROVIDER == "perplexity" and not PERPLEXITY_API_KEY:
-        return "Perplexity API key not configured. Explanation unavailable."
-
-    if AI_PROVIDER != "perplexity" and not API_KEY:
-        return "Gemini API key not configured. Explanation unavailable."
-
-    prompt = (
-        "Explain the correct answer simply for students. Max 4 lines.\n"
-        f"Question: {question}\n"
-        f"Options: {options}\n"
-        f"Correct Answer: {correct_answer}\n"
-    )
-
-    if AI_PROVIDER == "perplexity":
-        return _perplexity_chat(prompt).strip()
-
-    try:
-        model = _get_model()
-        response = model.generate_content(
-            prompt,
-            generation_config={"temperature": 0.4},
-        )
-        return response.text.strip()
-    except Exception:
-        model = _fallback_model()
-        response = model.generate_content(
-            prompt,
-            generation_config={"temperature": 0.4},
-        )
-        return response.text.strip()
+    """Generate explanation using Groq (fast and free)"""
+    if GROQ_API_KEY:
+        try:
+            prompt = (
+                "Explain why this answer is correct. Max 3 sentences, simple language.\n"
+                f"Question: {question}\n"
+                f"Options: {options}\n"
+                f"Correct Answer: {correct_answer}\n"
+            )
+            return _groq_chat(prompt).strip()
+        except Exception as e:
+            print(f"Groq explanation failed: {e}")
+    
+    # Fallback
+    return "Explanation unavailable. Please review the question and options."
 
 
 def extract_questions_llm(text: str) -> List[Dict]:

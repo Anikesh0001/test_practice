@@ -1,0 +1,66 @@
+{
+  "company_name": "Microsoft",
+  "difficulty_level": "Hard",
+  "question_distribution": {
+    "aptitude": 15,
+    "core_cs": 15,
+    "dsa": 10,
+    "coding": 10
+  },
+  "dsa_topics": [
+    "Arrays",
+    "Strings",
+    "Linked Lists",
+    "Trees",
+    "Graphs",
+    "Greedy",
+    "Recursion"
+  ],
+  "aptitude_ratio": 0.4,
+  "coding_style": "Optimization and efficiency focused",
+  "hiring_focus": [
+    "Problem Solving",
+    "Data Structures & Algorithms",
+    "Coding Proficiency",
+    "Analytical Thinking"
+  ],
+  "test_duration_minutes": 90,
+  "total_questions": 50,
+  "research_summary": "### 1. Overall Difficulty Level\nMicrosoft's online assessment and campus recruitment process is rated **medium** overall, with easy-to-medium coding problems in the initial rounds progressing to harder challenges in interviews. The online coding test features 5-6 competitive questions solvable in 1-1.5 hours, requiring strong fundamentals but not extreme optimization[1][2].\n\n### 2. Question Distribution Across Sections\nMicrosoft's online assessment primarily focuses on **coding/DSA** with no exp",
+  "sections": {
+    "aptitude": {
+      "count": 15,
+      "types": [
+        "Logical Reasoning",
+        "Quantitative Aptitude",
+        "Verbal Ability"
+      ]
+    },
+    "core_cs": {
+      "count": 15,
+      "topics": [
+        "Operating Systems",
+        "DBMS",
+        "Networks",
+        "OOP"
+      ]
+    },
+    "dsa": {
+      "count": 10,
+      "topics": [
+        "Arrays",
+        "Strings",
+        "Linked Lists",
+        "Trees",
+        "Graphs"
+      ]
+    },
+    "coding": {
+      "count": 10,
+      "difficulty": "Hard",
+      "style": "Optimization and efficiency focused"
+    }
+  },
+  "cached_at": "2026-02-15T08:59:46.672605",
+  "cache_version": "1.0"
+}

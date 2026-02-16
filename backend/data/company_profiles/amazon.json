@@ -1,0 +1,67 @@
+{
+  "company_name": "Amazon",
+  "difficulty_level": "Hard",
+  "question_distribution": {
+    "aptitude": 15,
+    "core_cs": 15,
+    "dsa": 10,
+    "coding": 10
+  },
+  "dsa_topics": [
+    "Arrays",
+    "Strings",
+    "Linked Lists",
+    "Trees",
+    "Graphs",
+    "Dynamic Programming",
+    "Greedy",
+    "Searching"
+  ],
+  "aptitude_ratio": 0.4,
+  "coding_style": "Optimization and efficiency focused",
+  "hiring_focus": [
+    "Problem Solving",
+    "Data Structures & Algorithms",
+    "Coding Proficiency",
+    "Analytical Thinking"
+  ],
+  "test_duration_minutes": 90,
+  "total_questions": 50,
+  "research_summary": "### Amazon Campus Recruitment Online Assessment Pattern (2026)\n\nAmazon's campus recruitment for university students and recent graduates typically begins with an **online assessment (OA)** as a key screening step, focusing on technical skills, problem-solving, and aptitude. This is followed by potential video assessments, phone screens, and onsite/virtual interview loops emphasizing coding, behavioral fit via Leadership Principles, and system design for technical roles.[1][2][5]\n\n#### 1. Overall",
+  "sections": {
+    "aptitude": {
+      "count": 15,
+      "types": [
+        "Logical Reasoning",
+        "Quantitative Aptitude",
+        "Verbal Ability"
+      ]
+    },
+    "core_cs": {
+      "count": 15,
+      "topics": [
+        "Operating Systems",
+        "DBMS",
+        "Networks",
+        "OOP"
+      ]
+    },
+    "dsa": {
+      "count": 10,
+      "topics": [
+        "Arrays",
+        "Strings",
+        "Linked Lists",
+        "Trees",
+        "Graphs"
+      ]
+    },
+    "coding": {
+      "count": 10,
+      "difficulty": "Hard",
+      "style": "Optimization and efficiency focused"
+    }
+  },
+  "cached_at": "2026-02-15T08:56:34.619687",
+  "cache_version": "1.0"
+}

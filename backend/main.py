@@ -20,11 +20,16 @@ from schemas import (
     UploadResponse,
 )
 from test_generator import create_test_session, start_test_session
+# Import company-based assessment routes
+from company_routes import router as company_router
 
 load_dotenv()
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="PDF Test Generator & Evaluator")
+
+# Include company assessment routes
+app.include_router(company_router)
 
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
 app.add_middleware(

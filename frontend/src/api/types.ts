@@ -10,6 +10,15 @@ export type UploadResponse = {
   questions: Question[];
 };
 
+export type CompanyTestResponse = {
+  test_id: number;
+  company_name: string;
+  total_questions: number;
+  difficulty: string;
+  duration_minutes: number;
+  message: string;
+};
+
 export type StartTestResponse = {
   test_id: number;
   duration_minutes: number;

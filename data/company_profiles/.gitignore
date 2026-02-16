@@ -1,0 +1,3 @@
+# Company profile cache directory
+# Auto-generated company hiring profiles are stored here
+*.json

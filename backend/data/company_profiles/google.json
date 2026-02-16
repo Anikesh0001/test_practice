@@ -1,0 +1,62 @@
+{
+  "company_name": "Google",
+  "difficulty_level": "Hard",
+  "question_distribution": {
+    "aptitude": 15,
+    "core_cs": 15,
+    "dsa": 10,
+    "coding": 10
+  },
+  "dsa_topics": [
+    "Arrays",
+    "Strings",
+    "Trees",
+    "Graphs"
+  ],
+  "aptitude_ratio": 0.3,
+  "coding_style": "Optimization and efficiency focused",
+  "hiring_focus": [
+    "Problem Solving",
+    "Data Structures & Algorithms",
+    "Coding Proficiency",
+    "Analytical Thinking"
+  ],
+  "test_duration_minutes": 90,
+  "total_questions": 50,
+  "research_summary": "### Google's Campus Recruitment Online Assessment Pattern\n\nGoogle's campus recruitment for new grads (e.g., 2026 hiring) typically begins with profile-based recruiter outreach or Google Kickstart contests, followed by online assessments or direct phone screens focusing heavily on **Data Structures & Algorithms (DSA)**, with no dedicated aptitude sections in technical rounds.[1][2]\n\n#### 1. Overall Difficulty Level\n**Medium to Hard.** Initial phone/online screens feature 1 medium or 2 easy DSA pr",
+  "sections": {
+    "aptitude": {
+      "count": 15,
+      "types": [
+        "Logical Reasoning",
+        "Quantitative Aptitude",
+        "Verbal Ability"
+      ]
+    },
+    "core_cs": {
+      "count": 15,
+      "topics": [
+        "Operating Systems",
+        "DBMS",
+        "Networks",
+        "OOP"
+      ]
+    },
+    "dsa": {
+      "count": 10,
+      "topics": [
+        "Arrays",
+        "Strings",
+        "Trees",
+        "Graphs"
+      ]
+    },
+    "coding": {
+      "count": 10,
+      "difficulty": "Hard",
+      "style": "Optimization and efficiency focused"
+    }
+  },
+  "cached_at": "2026-02-15T08:50:34.452253",
+  "cache_version": "1.0"
+}

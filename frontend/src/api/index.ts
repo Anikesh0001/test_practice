@@ -4,7 +4,8 @@ import {
   RetryResponse,
   StartTestResponse,
   SubmitResponse,
-  UploadResponse
+  UploadResponse,
+  CompanyTestResponse
 } from "./types";
 
 export const uploadPdf = async (file: File): Promise<UploadResponse> => {
@@ -12,6 +13,14 @@ export const uploadPdf = async (file: File): Promise<UploadResponse> => {
   form.append("file", file);
   const { data } = await api.post<UploadResponse>("/api/upload", form, {
     headers: { "Content-Type": "multipart/form-data" }
+  });
+  return data;
+};
+
+export const generateCompanyTest = async (company: string): Promise<CompanyTestResponse> => {
+  const { data } = await api.post<CompanyTestResponse>("/api/generate-company-test", {
+    company,
+    use_cache: true
   });
   return data;
 };

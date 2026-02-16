@@ -19,8 +19,9 @@ def create_test_session(db: Session, questions: List[Question]) -> TestSession:
 
 
 def start_test_session(db: Session, session: TestSession, duration_minutes: int) -> TestSession:
+    if session.started_at is None:  # Only set once
+        session.started_at = datetime.utcnow()
     session.duration_minutes = duration_minutes
-    session.started_at = datetime.utcnow()
     db.commit()
     db.refresh(session)
     return session
