@@ -112,7 +112,7 @@ npm run dev
 4. Submit or auto-submit on timer end.
 5. View results, explanations, and analytics.
 
-<<<<<<< HEAD
+
 
 =======
 ### Company Assessment Mode
@@ -140,27 +140,10 @@ npm run dev
 - Matches real campus OA patterns
 - Varies difficulty based on company profile
 
-## Deployment (Free Tier)
 
-### Frontend (Vercel)
 
-1. Set the Vercel project root to `frontend`.
-2. Add environment variable `VITE_API_BASE_URL` pointing to your backend URL.
-3. Deploy.
 
-### Backend (Render / Railway)
 
-1. Set the service root to `backend`.
-2. Add environment variables:
-   - `GEMINI_API_KEY`
-   - `PERPLEXITY_API_KEY` (for company assessment feature)
-3. Use the start command:
-```
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
->>>>>>> 8ae858b (company function added)
-
-**Note**: Company assessment feature requires both API keys. PDF mode only needs Gemini.
 
 ## Screenshots
 
@@ -221,4 +204,4 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ---
 
-**Built with ❤️ using FastAPI, React, Gemini AI, and Perplexity AI**
+**Built with ❤️**
